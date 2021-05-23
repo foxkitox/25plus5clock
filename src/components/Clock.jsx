@@ -57,7 +57,7 @@ const Clock = () => {
       });
 
     const alarm = (beep) =>{
-
+        
         const sound = document.getElementById('beep')    
         sound.currentTime = 0
         if(beep === true && timeLeft.time===0){ 
@@ -80,6 +80,11 @@ const Clock = () => {
         let seconds = timeLeft.time - minutes * 60;
         seconds = seconds < 10 ? '0' + seconds : seconds;
         minutes = minutes < 10 ? '0' + minutes : minutes;
+        if (minutes === '00' && seconds === '00'){
+            console.log(minutes + ':' + seconds)
+            alarm(true)
+        }
+        
         return minutes + ':' + seconds;
       }
 
@@ -110,7 +115,7 @@ const Clock = () => {
                     <button onClick={Reset} id="reset" className="btn btn-primary">RESET</button>
                     <p id="timer-label">{timeLeft.label}</p>
                     <p id="time-left">{clockify()}</p>
-                    <audio preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" className="clip" id="beep">{alarm(true)}</audio>
+                    <audio preload="auto" src="https://raw.githubusercontent.com/freeCodeCamp/cdn/master/build/testable-projects-fcc/audio/BeepSound.wav" className="clip" id="beep"></audio>
                 </div>
             </div>
         </div>
